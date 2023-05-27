@@ -14,10 +14,10 @@ import qualified Crypto.Secp256k1                       as Secp256k1
 import           Data.ByteArray                         (convert)
 import qualified Data.ByteArray.Base64String            as Base64
 import qualified Data.ByteString                        as B
-import qualified Data.ByteString.Short                  as Short
 import           Data.Kind                              (Type)
 import           Data.Maybe                             (fromMaybe)
 import           Data.Proxy
+import qualified Data.Serialize                         as Serialize
 import           Data.Text                              (Text)
 import qualified Network.ABCI.Types.Messages.FieldTypes as FT
 import           Tendermint.SDK.Types.Address           (Address,
@@ -81,17 +81,12 @@ instance RecoverableSignatureSchema Secp256k1 where
     signRecoverableMessage _ priv dig = Secp256k1.signRecMsg priv (msgFromSHA256 dig)
     recover _ sig dig = Secp256k1.recover sig (msgFromSHA256 dig)
     serializeRecoverableSignature _ sig =
-      let csr = Secp256k1.exportCompactRecSig sig
-      in Short.fromShort (Secp256k1.getCompactRecSigR csr) <>
-           Short.fromShort (Secp256k1.getCompactRecSigS csr) <>
-           B.pack [Secp256k1.getCompactRecSigV csr]
+      Serialize.encode $ Secp256k1.exportCompactRecSig sig
     makeRecoverableSignature _ bs =
-      let (r,rest) = B.splitAt 32 bs
-          (s,v) = B.splitAt 32 rest
-      in if B.length r /= 32 || B.length s /= 32 || B.length v /= 1
-           then Nothing
-           else Secp256k1.importCompactRecSig $
-                  Secp256k1.CompactRecSig (Short.toShort r) (Short.toShort s) (B.head v)
+        either
+            (const Nothing)
+            Secp256k1.importCompactRecSig
+            (Serialize.decode bs)
 
 
 parsePubKey

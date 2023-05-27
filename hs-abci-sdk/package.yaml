@@ -53,6 +53,7 @@ library:
     - avl-auth
     - base >= 4.7 && < 5
     - bytestring
+    - cereal
     - containers
     - cryptonite
     - data-default-class
@@ -82,6 +83,7 @@ library:
     - template-haskell
     - time
     - validation
+    - warp
   ghc-options:
   - -fplugin=Polysemy.Plugin
   - -Wall
@@ -90,6 +92,8 @@ library:
   - -Widentities
   - -Wincomplete-uni-patterns
   - -Wredundant-constraints
+  - -Wno-noncanonical-monad-instances
+  - -Wno-unused-record-wildcards
   exposed-modules:
   - Tendermint.SDK.Application
   - Tendermint.SDK.Application.App

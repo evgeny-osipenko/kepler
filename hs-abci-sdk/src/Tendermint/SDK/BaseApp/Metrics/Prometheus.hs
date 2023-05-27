@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 module Tendermint.SDK.BaseApp.Metrics.Prometheus
@@ -43,6 +44,7 @@ import           Data.Text                                     (Text)
 import qualified Data.Text                                     as Text
 import           Data.Time                                     (diffUTCTime,
                                                                 getCurrentTime)
+import           Network.Wai.Handler.Warp                      (Port)
 import           Polysemy                                      (Embed, Member,
                                                                 Sem, interpretH,
                                                                 pureT, raise,
@@ -54,8 +56,22 @@ import qualified System.Metrics.Prometheus.Http.Scrape         as Http
 import qualified System.Metrics.Prometheus.Metric.Counter      as Counter
 import qualified System.Metrics.Prometheus.Metric.Histogram    as Histogram
 import qualified System.Metrics.Prometheus.MetricId            as MetricId
+import           System.Metrics.Prometheus.Registry            (RegistrySample)
 import           Tendermint.SDK.BaseApp.Metrics                (CountName (..), HistogramName (..),
                                                                 Metrics (..))
+
+serveHttpTextMetrics
+  :: MonadIO m
+  => Port
+  -> Http.Path
+  -> IO RegistrySample
+  -> m ()
+#if MIN_VERSION_prometheus(2,2,0)
+serveHttpTextMetrics = Http.serveMetrics
+#else
+serveHttpTextMetrics = Http.serveHttpTextMetrics
+#endif
+
 --------------------------------------------------------------------------------
 -- Metrics Types
 --------------------------------------------------------------------------------
@@ -148,7 +164,7 @@ forkMetricsServer metCfg = liftIO $
   let PrometheusEnv{..} = metCfg
       port = _prometheusPort $ _envMetricsScrapingConfig
       MetricsState{..} = _envMetricsState
-  in forkIO $ Http.serveHttpTextMetrics port ["metrics"] (Registry.sample _metricsRegistry)
+  in forkIO $ serveHttpTextMetrics port ["metrics"] (Registry.sample _metricsRegistry)
 
 --------------------------------------------------------------------------------
 -- eval
