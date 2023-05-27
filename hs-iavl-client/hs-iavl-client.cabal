@@ -1,0 +1,133 @@
+cabal-version: 2.0
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hs-iavl-client
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/f-o-a-m/kepler/blob/master/hs-iavl-client/README.md>
+homepage:       https://github.com/f-o-a-m/kepler#readme
+bug-reports:    https://github.com/f-o-a-m/kepler/issues
+author:         Martin Allen
+maintainer:     martin@foam.space
+copyright:      2020 Martin Allen
+license:        Apache
+build-type:     Custom
+extra-source-files:
+    protos/google/api/annotations.proto
+    protos/google/api/http.proto
+    protos/google/protobuf/descriptor.proto
+    protos/google/protobuf/empty.proto
+    protos/iavl/api.proto
+
+source-repository head
+  type: git
+  location: https://github.com/f-o-a-m/kepler
+  subdir: hs-iavl-client
+
+custom-setup
+  setup-depends:
+      Cabal
+    , base
+    , proto-lens-setup
+
+library
+  exposed-modules:
+      Database.IAVL.RPC
+      Database.IAVL.RPC.Types
+      Proto.Iavl.Api
+      Proto.Iavl.Api_Fields
+      Proto.Google.Api.Http
+      Proto.Google.Api.Http_Fields
+      Proto.Google.Protobuf.Empty
+      Proto.Google.Protobuf.Empty_Fields
+      Proto.Google.Protobuf.Descriptor
+      Proto.Google.Protobuf.Descriptor_Fields
+      Proto.Google.Api.Annotations
+      Proto.Google.Api.Annotations_Fields
+  other-modules:
+      Paths_hs_iavl_client
+  autogen-modules:
+      Paths_hs_iavl_client
+      Proto.Iavl.Api
+      Proto.Iavl.Api_Fields
+      Proto.Google.Api.Http
+      Proto.Google.Api.Http_Fields
+      Proto.Google.Protobuf.Empty
+      Proto.Google.Protobuf.Empty_Fields
+      Proto.Google.Protobuf.Descriptor
+      Proto.Google.Protobuf.Descriptor_Fields
+      Proto.Google.Api.Annotations
+      Proto.Google.Api.Annotations_Fields
+  hs-source-dirs:
+      src
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      LambdaCase
+      TypeFamilies
+      GADTs
+      GeneralizedNewtypeDeriving
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+      MultiParamTypeClasses
+      FunctionalDependencies
+  ghc-options: -Werror -Wall -Wcompat -Widentities -Wincomplete-uni-patterns -Wredundant-constraints
+  build-depends:
+      base >=4.7 && <5
+    , http2-client
+    , http2-client-grpc
+    , http2-grpc-proto-lens
+    , proto-lens
+    , proto-lens-runtime
+    , text
+  default-language: Haskell2010
+
+test-suite hs-iavl-client-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Database.IAVL.RPCSpec
+      Paths_hs_iavl_client
+  autogen-modules:
+      Paths_hs_iavl_client
+  hs-source-dirs:
+      test
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      LambdaCase
+      TypeFamilies
+      GADTs
+      GeneralizedNewtypeDeriving
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+      MultiParamTypeClasses
+      FunctionalDependencies
+  ghc-options: -Werror -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hs-iavl-client
+    , hspec
+    , hspec-core
+    , hspec-discover
+    , http2-client
+    , http2-client-grpc
+    , lens
+    , proto-lens
+  default-language: Haskell2010

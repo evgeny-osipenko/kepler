@@ -1,0 +1,112 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hs-tendermint-client
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/f-o-a-m/kepler/blob/master/hs-tendermind-client/README.md>
+homepage:       https://github.com/f-o-a-m/kepler#readme
+bug-reports:    https://github.com/f-o-a-m/kepler/issues
+author:         Martin Allen
+maintainer:     martin@foam.spacem
+copyright:      2020 FOAM
+license:        Apache
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/f-o-a-m/kepler
+  subdir: hs-tendermint-client
+
+library
+  exposed-modules:
+      Network.Tendermint.Client
+      Network.Tendermint.Client.Internal.RPCClient
+  other-modules:
+      Paths_hs_tendermint_client
+  hs-source-dirs:
+      src
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      TypeFamilies
+      TypeApplications
+      GADTs
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+      GeneralizedNewtypeDeriving
+  ghc-options: -Werror -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wredundant-constraints
+  build-depends:
+      aeson
+    , aeson-casing
+    , base >=4.7 && <5
+    , bytestring
+    , conduit
+    , data-default-class
+    , exceptions
+    , hs-abci-types
+    , http-client
+    , http-conduit
+    , lens
+    , lens-aeson
+    , mtl
+    , random
+    , resourcet
+    , stm
+    , stm-conduit
+    , text
+    , websockets
+    , wuss
+  default-language: Haskell2010
+
+test-suite hs-tendermint-client-kv
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      KVStore.Test.KVSpec
+  hs-source-dirs:
+      kv-test
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      TypeFamilies
+      TypeApplications
+      GADTs
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+      GeneralizedNewtypeDeriving
+  ghc-options: -Werror -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , aeson-pretty
+    , base >=4.7 && <5
+    , bytestring
+    , conduit
+    , data-default-class
+    , exceptions
+    , hs-abci-types
+    , hs-tendermint-client
+    , hspec
+    , lens
+    , random
+    , resourcet
+    , string-conversions
+    , text
+    , unordered-containers
+  default-language: Haskell2010

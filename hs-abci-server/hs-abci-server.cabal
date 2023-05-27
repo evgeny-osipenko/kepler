@@ -1,0 +1,101 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hs-abci-server
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/f-o-a-m/kepler/blob/master/hs-abci-server/README.md>
+homepage:       https://github.com/f-o-a-m/kepler#readme
+bug-reports:    https://github.com/f-o-a-m/kepler/issues
+author:         Martin Allen
+maintainer:     martin@foam.space
+copyright:      2020 Martin Allen
+license:        Apache
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/f-o-a-m/kepler
+  subdir: hs-abci-server
+
+library
+  exposed-modules:
+      Network.ABCI.Server
+      Network.ABCI.Server.App
+      Network.ABCI.Server.App.DecodeError
+  other-modules:
+      Paths_hs_abci_server
+  hs-source-dirs:
+      src
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      TypeFamilies
+      GADTs
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+      MultiParamTypeClasses
+      FunctionalDependencies
+      TypeApplications
+  ghc-options: -Werror -Wall -Wcompat -Widentities -Wincomplete-uni-patterns -Wredundant-constraints
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , base16-bytestring
+    , bytestring
+    , conduit
+    , conduit-extra
+    , cryptonite
+    , data-default-class
+    , hs-abci-types
+    , lens
+    , memory
+    , proto-lens
+    , string-conversions
+    , text
+  default-language: Haskell2010
+
+test-suite hs-abci-server-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Network.ABCI.Test.Server.AppSpec
+  hs-source-dirs:
+      test
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      TypeFamilies
+      GADTs
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+      MultiParamTypeClasses
+      FunctionalDependencies
+      TypeApplications
+  ghc-options: -Werror -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , binary
+    , bytestring
+    , hs-abci-server
+    , hspec
+    , hspec-core
+    , hspec-discover
+  default-language: Haskell2010

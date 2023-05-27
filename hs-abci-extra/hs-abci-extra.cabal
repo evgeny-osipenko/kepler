@@ -1,0 +1,60 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hs-abci-extra
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/f-o-a-m/kepler/blob/master/hs-abci-server/README.md>
+homepage:       https://github.com/f-o-a-m/kepler#readme
+bug-reports:    https://github.com/f-o-a-m/kepler/issues
+author:         Martin Allen
+maintainer:     martin@foam.space
+copyright:      2020 Martin Allen
+license:        Apache
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/f-o-a-m/kepler
+  subdir: hs-abci-extra
+
+library
+  exposed-modules:
+      Network.ABCI.Server.Middleware.Logger
+      Network.ABCI.Server.Middleware.Metrics
+  other-modules:
+      Paths_hs_abci_extra
+  hs-source-dirs:
+      src
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      TypeFamilies
+      GADTs
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+  ghc-options: -Werror -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , containers
+    , hs-abci-server
+    , hs-abci-types
+    , katip
+    , prometheus
+    , string-conversions
+    , time
+    , transformers
+  default-language: Haskell2010

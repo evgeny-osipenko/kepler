@@ -1,0 +1,147 @@
+cabal-version: 2.0
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hs-abci-types
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/f-o-a-m/kepler/blob/master/hs-abci-types/README.md>
+homepage:       https://github.com/f-o-a-m/kepler#readme
+bug-reports:    https://github.com/f-o-a-m/kepler/issues
+author:         Martin Allen
+maintainer:     martin@foam.space
+copyright:      2020 Martin Allen
+license:        Apache
+build-type:     Custom
+extra-source-files:
+    protos/gogo/protobuf/gogoproto/gogo.proto
+    protos/google/protobuf/descriptor.proto
+    protos/google/protobuf/timestamp.proto
+    protos/tendermint/tendermint/crypto/merkle/merkle.proto
+    protos/tendermint/tendermint/libs/common/types.proto
+    protos/types.proto
+
+source-repository head
+  type: git
+  location: https://github.com/f-o-a-m/kepler
+  subdir: hs-abci-types
+
+custom-setup
+  setup-depends:
+      Cabal
+    , base
+    , proto-lens-setup
+
+library
+  exposed-modules:
+      Data.ByteArray.HexString
+      Data.ByteArray.Base64String
+      Network.ABCI.Types.Messages.Common
+      Network.ABCI.Types.Messages.Request
+      Network.ABCI.Types.Messages.Response
+      Network.ABCI.Types.Messages.FieldTypes
+      Proto.Types
+      Proto.Types_Fields
+      Proto.Gogo.Protobuf.Gogoproto.Gogo
+      Proto.Gogo.Protobuf.Gogoproto.Gogo_Fields
+      Proto.Google.Protobuf.Descriptor
+      Proto.Google.Protobuf.Descriptor_Fields
+      Proto.Google.Protobuf.Timestamp
+      Proto.Google.Protobuf.Timestamp_Fields
+      Proto.Tendermint.Tendermint.Crypto.Merkle.Merkle
+      Proto.Tendermint.Tendermint.Crypto.Merkle.Merkle_Fields
+      Proto.Tendermint.Tendermint.Libs.Common.Types
+      Proto.Tendermint.Tendermint.Libs.Common.Types_Fields
+  other-modules:
+      Paths_hs_abci_types
+  autogen-modules:
+      Paths_hs_abci_types
+      Proto.Types
+      Proto.Types_Fields
+      Proto.Gogo.Protobuf.Gogoproto.Gogo
+      Proto.Gogo.Protobuf.Gogoproto.Gogo_Fields
+      Proto.Google.Protobuf.Descriptor
+      Proto.Google.Protobuf.Descriptor_Fields
+      Proto.Google.Protobuf.Timestamp
+      Proto.Google.Protobuf.Timestamp_Fields
+      Proto.Tendermint.Tendermint.Crypto.Merkle.Merkle
+      Proto.Tendermint.Tendermint.Crypto.Merkle.Merkle_Fields
+      Proto.Tendermint.Tendermint.Libs.Common.Types
+      Proto.Tendermint.Tendermint.Libs.Common.Types_Fields
+  hs-source-dirs:
+      src
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      TypeFamilies
+      GADTs
+      GeneralizedNewtypeDeriving
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+      MultiParamTypeClasses
+      FunctionalDependencies
+  ghc-options: -Werror -Wall -Wcompat -Widentities -Wincomplete-uni-patterns -Wredundant-constraints
+  build-depends:
+      aeson
+    , aeson-casing
+    , base >=4.7 && <5
+    , bytestring
+    , data-default-class
+    , lens
+    , memory
+    , proto-lens
+    , proto-lens-runtime
+    , template-haskell
+    , text
+    , time
+  default-language: Haskell2010
+
+test-suite hs-abci-types-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Network.ABCI.Test.Types.Messages.Instances
+      Network.ABCI.Test.Types.MessagesSpec
+      Test.Data.ByteArray.HexStringSpec
+  hs-source-dirs:
+      test
+  default-extensions:
+      NamedFieldPuns
+      RecordWildCards
+      FlexibleContexts
+      DeriveGeneric
+      TypeFamilies
+      GADTs
+      GeneralizedNewtypeDeriving
+      DataKinds
+      PolyKinds
+      RankNTypes
+      DataKinds
+      ScopedTypeVariables
+      FlexibleInstances
+      OverloadedStrings
+      MultiParamTypeClasses
+      FunctionalDependencies
+  ghc-options: -Werror -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base
+    , bytestring
+    , generic-arbitrary
+    , hs-abci-types
+    , hspec
+    , hspec-core
+    , hspec-discover
+    , lens
+    , proto-lens
+    , proto-lens-arbitrary
+    , quickcheck-instances
+  default-language: Haskell2010

@@ -1,0 +1,253 @@
+cabal-version: 2.0
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hs-abci-sdk
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/f-o-a-m/kepler/blob/master/hs-abci-sdk/README.md>
+homepage:       https://github.com/f-o-a-m/kepler#readme
+bug-reports:    https://github.com/f-o-a-m/kepler/issues
+author:         Martin Allen
+maintainer:     martin@foam.space
+copyright:      2020 Martin Allen
+license:        Apache
+build-type:     Custom
+extra-source-files:
+    protos/modules/auth.proto
+    protos/modules/bank.proto
+    protos/types/transaction.proto
+
+source-repository head
+  type: git
+  location: https://github.com/f-o-a-m/kepler
+  subdir: hs-abci-sdk
+
+custom-setup
+  setup-depends:
+      Cabal
+    , base
+    , proto-lens-setup
+
+library
+  exposed-modules:
+      Tendermint.SDK.Application
+      Tendermint.SDK.Application.App
+      Tendermint.SDK.Application.Module
+      Tendermint.SDK.Application.Handlers
+      Tendermint.SDK.Application.AnteHandler
+      Tendermint.SDK.BaseApp
+      Tendermint.SDK.BaseApp.Effects
+      Tendermint.SDK.BaseApp.Effects.BaseEffs
+      Tendermint.SDK.BaseApp.Effects.CoreEffs
+      Tendermint.SDK.BaseApp.Effects.PureCoreEffs
+      Tendermint.SDK.BaseApp.Errors
+      Tendermint.SDK.BaseApp.Events
+      Tendermint.SDK.BaseApp.Gas
+      Tendermint.SDK.BaseApp.Logger
+      Tendermint.SDK.BaseApp.Logger.Katip
+      Tendermint.SDK.BaseApp.Metrics
+      Tendermint.SDK.BaseApp.Metrics.Prometheus
+      Tendermint.SDK.BaseApp.Query
+      Tendermint.SDK.BaseApp.Query.Router
+      Tendermint.SDK.BaseApp.Query.Store
+      Tendermint.SDK.BaseApp.Query.Types
+      Tendermint.SDK.BaseApp.Router.Delayed
+      Tendermint.SDK.BaseApp.Router.Types
+      Tendermint.SDK.BaseApp.Router.Router
+      Tendermint.SDK.BaseApp.Store
+      Tendermint.SDK.BaseApp.Store.Array
+      Tendermint.SDK.BaseApp.Store.IAVLStore
+      Tendermint.SDK.BaseApp.Store.List
+      Tendermint.SDK.BaseApp.Store.Map
+      Tendermint.SDK.BaseApp.Store.MemoryStore
+      Tendermint.SDK.BaseApp.Store.RawStore
+      Tendermint.SDK.BaseApp.Store.TH
+      Tendermint.SDK.BaseApp.Store.Var
+      Tendermint.SDK.BaseApp.Transaction
+      Tendermint.SDK.BaseApp.Transaction.AnteHandler
+      Tendermint.SDK.BaseApp.Transaction.Cache
+      Tendermint.SDK.BaseApp.Transaction.Checker
+      Tendermint.SDK.BaseApp.Transaction.Effect
+      Tendermint.SDK.BaseApp.Transaction.Router
+      Tendermint.SDK.BaseApp.Transaction.Types
+      Tendermint.SDK.Codec
+      Tendermint.SDK.Crypto
+      Tendermint.SDK.Modules.Auth
+      Tendermint.SDK.Modules.Bank
+      Tendermint.SDK.Modules.Validators
+      Tendermint.SDK.Types.Address
+      Tendermint.SDK.Types.Effects
+      Tendermint.SDK.Types.Message
+      Tendermint.SDK.Types.Transaction
+      Tendermint.SDK.Types.TxResult
+      Proto.Modules.Auth
+      Proto.Modules.Auth_Fields
+      Proto.Modules.Bank
+      Proto.Modules.Bank_Fields
+      Proto.Types.Transaction
+      Proto.Types.Transaction_Fields
+  other-modules:
+      Tendermint.SDK.BaseApp.Block
+      Tendermint.SDK.BaseApp.Query.Effect
+      Tendermint.SDK.BaseApp.Router
+      Tendermint.SDK.Modules.Auth.Keeper
+      Tendermint.SDK.Modules.Auth.Keys
+      Tendermint.SDK.Modules.Auth.Query
+      Tendermint.SDK.Modules.Auth.Types
+      Tendermint.SDK.Modules.Bank.Keeper
+      Tendermint.SDK.Modules.Bank.Messages
+      Tendermint.SDK.Modules.Bank.Query
+      Tendermint.SDK.Modules.Bank.Router
+      Tendermint.SDK.Modules.Bank.Types
+      Tendermint.SDK.Modules.Validators.EndBlock
+      Tendermint.SDK.Modules.Validators.Keeper
+      Tendermint.SDK.Modules.Validators.Query
+      Tendermint.SDK.Modules.Validators.Store
+      Tendermint.SDK.Modules.Validators.Types
+      Paths_hs_abci_sdk
+  autogen-modules:
+      Paths_hs_abci_sdk
+      Proto.Modules.Auth
+      Proto.Modules.Auth_Fields
+      Proto.Modules.Bank
+      Proto.Modules.Bank_Fields
+      Proto.Types.Transaction
+      Proto.Types.Transaction_Fields
+  hs-source-dirs:
+      src
+  default-extensions:
+      DeriveGeneric
+      NamedFieldPuns
+      RecordWildCards
+      RankNTypes
+      TypeFamilies
+      FlexibleContexts
+      DataKinds
+      TypeApplications
+      OverloadedStrings
+      PolyKinds
+      GeneralizedNewtypeDeriving
+      ScopedTypeVariables
+      TupleSections
+      LambdaCase
+      GADTs
+      TypeOperators
+      FlexibleInstances
+      MultiParamTypeClasses
+      DefaultSignatures
+      FunctionalDependencies
+      TypeFamilyDependencies
+      DeriveFunctor
+      StandaloneDeriving
+      ConstraintKinds
+      PackageImports
+  ghc-options: -fplugin=Polysemy.Plugin -Wall -Werror -Wcompat -Widentities -Wincomplete-uni-patterns -Wredundant-constraints -Wno-noncanonical-monad-instances -Wno-unused-record-wildcards
+  build-depends:
+      aeson
+    , aeson-casing
+    , avl-auth
+    , base >=4.7 && <5
+    , bytestring
+    , cereal
+    , containers
+    , cryptonite
+    , data-default-class
+    , errors
+    , hs-abci-server
+    , hs-abci-types
+    , hs-iavl-client
+    , http-api-data
+    , http-types
+    , http2-client
+    , http2-client-grpc
+    , katip
+    , lens
+    , memory
+    , mtl
+    , polysemy
+    , polysemy-plugin
+    , prometheus
+    , proto-lens
+    , proto-lens-runtime
+    , proto3-suite
+    , proto3-wire
+    , secp256k1-haskell
+    , servant
+    , string-conversions
+    , template-haskell
+    , text
+    , time
+    , validation
+    , warp
+  default-language: Haskell2010
+
+test-suite hs-abci-sdk-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Tendermint.SDK.Test.IAVLStoreSpec
+      Tendermint.SDK.Test.CryptoSpec
+      Tendermint.SDK.Test.GasSpec
+      Tendermint.SDK.Test.MetricsSpec
+      Tendermint.SDK.Test.SimpleStorage
+      Tendermint.SDK.Test.SimpleStorageKeys
+      Tendermint.SDK.Test.ArraySpec
+      Tendermint.SDK.Test.ListSpec
+      Tendermint.SDK.Test.MapSpec
+      Tendermint.SDK.Test.VarSpec
+      Tendermint.SDK.Test.QuerySpec
+  hs-source-dirs:
+      test
+  default-extensions:
+      DeriveGeneric
+      NamedFieldPuns
+      RecordWildCards
+      RankNTypes
+      TypeFamilies
+      FlexibleContexts
+      DataKinds
+      TypeApplications
+      OverloadedStrings
+      PolyKinds
+      GeneralizedNewtypeDeriving
+      ScopedTypeVariables
+      TupleSections
+      LambdaCase
+      GADTs
+      TypeOperators
+      FlexibleInstances
+      MultiParamTypeClasses
+      DefaultSignatures
+      FunctionalDependencies
+      TypeFamilyDependencies
+      DeriveFunctor
+      StandaloneDeriving
+      ConstraintKinds
+      PackageImports
+  ghc-options: -fplugin=Polysemy.Plugin -Werror -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , cereal
+    , cereal-text
+    , containers
+    , cryptonite
+    , hs-abci-sdk
+    , hs-abci-types
+    , hspec
+    , hspec-core
+    , hspec-discover
+    , http2-client-grpc
+    , lens
+    , memory
+    , polysemy
+    , polysemy-plugin
+    , prometheus
+    , secp256k1-haskell
+    , servant
+    , string-conversions
+    , text
+    , validation
+  default-language: Haskell2010
